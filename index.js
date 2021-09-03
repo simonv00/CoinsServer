@@ -39,4 +39,4 @@ app.post('/Registro/api/insert', (req,res) => {
 app.listen(3001,()=>{
     console.log('running on 3001')
 })
-
+ 

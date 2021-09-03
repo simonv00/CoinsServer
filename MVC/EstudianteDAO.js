@@ -17,5 +17,5 @@ export default function insertStudent(estudiante){
         console.log(result)
     })
     
-}
+} 
 
