@@ -77,4 +77,4 @@ export default class EstudianteBO{
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
-}
+} 

@@ -79,7 +79,7 @@ class Estudiante {
     get tipoID() {
         return this._tipoID
     }
-
+ 
     set tipoID(newTipoID) {
         this._tipoID = newTipoID
     }
