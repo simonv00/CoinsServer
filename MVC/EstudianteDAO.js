@@ -3,7 +3,7 @@ import mySql from 'mysql'
 const db = mySql.createPool({
     host: 'localhost' ,
     user: 'root' ,
-    password: '9908' ,
+    password: '011298' ,
     database: 'Coins'
 });
 
@@ -18,3 +18,4 @@ export default function insertStudent(estudiante){
     })
     
 }
+

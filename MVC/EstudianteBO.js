@@ -8,22 +8,37 @@ export default class EstudianteBO{
     static validateAll(estudiante){
 
         const {nombre1, nombre2, apellido1, apellido2, telefono, correo, id, tipoID, monto, estado} = estudiante
-
+            const isNombre1 = this.validateAlpha(nombre1)
+            const isNombre2 = this.validateAlpha2(nombre2)
+            const isApellido1 = this.validateAlpha(apellido1) 
+            const isApellido2 = this.validateAlpha2(apellido2)
+            const isCorreo = this.validateMail(correo) 
+            const isTelefono = this.validateNumber(telefono)
+            const isID = this.validateID(id)
+            const isMonto = this.validateMonto(monto)
         if(
-            this.validateMail(correo) &&
-            this.validateAlpha(nombre1) &&
-            this.validateAlpha2(nombre2) &&
-            this.validateAlpha(apellido1) &&
-            this.validateAlpha2(apellido2) &&
-            this.validateNumber(telefono) &&
-            this.validateID(id) &&
-            this.validateMonto(monto)
+            isNombre1 &&
+            isNombre2 &&
+            isApellido1 &&
+            isApellido2 &&
+            isCorreo &&
+            isTelefono &&
+            isID &&
+            isMonto
             
         ){
             insertStudent(estudiante)
-            return true
         }
-        return false
+        return {
+            isNombre1,
+            isNombre2,
+            isApellido1,
+            isApellido2,
+            isCorreo,
+            isTelefono,
+            isID,
+            isMonto
+        }
     }
 
 

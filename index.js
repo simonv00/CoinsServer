@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 const db = mySql.createPool({
     host: 'localhost' ,
     user: 'root' ,
-    password: '9908' ,
+    password: '011298' ,
     database: 'Coins'
 });
 
@@ -26,8 +26,9 @@ app.get('/Listar/api/get', (req, res) => {
 app.post('/Registro/api/insert', (req,res) => {
     try {
         const {Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado} = req.body
-        controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado)
-        return res.send("Succesfully inserted").status(200)
+        const x = controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado)
+        console.log(x)
+        return res.send(x).status(200)
     } catch (error) {
         //throw error
         console.log(error)
