@@ -16,7 +16,7 @@ export default class EstudianteBO{
             const isTelefono = this.validateNumber(telefono)
             const isID = this.validateID(id)
             const isMonto = this.validateMonto(monto)
-            const ItSaved = false
+            var ItSaved = false
         if(
             isNombre1 &&
             isNombre2 &&
