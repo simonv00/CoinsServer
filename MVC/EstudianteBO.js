@@ -16,6 +16,7 @@ export default class EstudianteBO{
             const isTelefono = this.validateNumber(telefono)
             const isID = this.validateID(id)
             const isMonto = this.validateMonto(monto)
+            const ItSaved = false
         if(
             isNombre1 &&
             isNombre2 &&
@@ -27,7 +28,7 @@ export default class EstudianteBO{
             isMonto
             
         ){
-            insertStudent(estudiante)
+            ItSaved = insertStudent(estudiante)
         }
         return {
             isNombre1,
@@ -37,7 +38,8 @@ export default class EstudianteBO{
             isCorreo,
             isTelefono,
             isID,
-            isMonto
+            isMonto,
+            ItSaved
         }
     }
 

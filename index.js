@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 const db = mySql.createPool({
     host: 'localhost' ,
     user: 'root' ,
-    password: '011298' ,
+    password: 'pinguino' ,
     database: 'Coins'
 });
 
@@ -35,6 +35,20 @@ app.post('/Registro/api/insert', (req,res) => {
         return res.send("bad request").status(400)
     }
 })
+
+app.delete('/Registro/api/delete', (req,res) => {
+    try {
+        const {Numero_Documento} = req.body
+        const x = controladorDelete(Numero_Documento)
+        console.log(x)
+        return res.send(x).status(200)
+    } catch (error) {
+        //throw error
+        console.log(error)
+        return res.send("bad request").status(400)
+    }
+})
+
 
 app.listen(3001,()=>{
     console.log('running on 3001')
