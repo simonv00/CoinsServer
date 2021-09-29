@@ -6,30 +6,29 @@ const db = mySql.createPool({
     password: '011298' ,
     database: 'Coins'
 });
+var x = undefined
 
 export default function insertStudent(estudiante){
     const sqlExists = "SELECT * from estudiantes WHERE Numero_Documento= (?) OR Correo = (?)"
     const sqlInsert = "INSERT INTO estudiantes (Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado) VALUES (?,?,?,?,?,?,?,?,?,?)"
     const {id,nombre1, nombre2, apellido1, apellido2, telefono,tipoID, correo,  monto, estado} = estudiante
-    db.query(sqlExists,[id, correo], q = (err,result) => {
+
+    db.query(sqlExists,[id, correo], (err,result) => {
         console.log(result)
         if(result.length ==  0){
-            db.query(sqlInsert, [id,nombre1, nombre2, apellido1, apellido2, telefono,tipoID, correo,  monto, estado] , qq =  (err, result) => {
+            db.query(sqlInsert, [id,nombre1, nombre2, apellido1, apellido2, telefono,tipoID, correo,  monto, estado] , (err, result) => {
                 if(err){
                     throw err
                 }
-                else{
-                    return true
-                }
             })
-        return true
         }
         else{
-            console.log("Dato duplicado")
-            return false
+            console.log('dato duplicado')
         }
     })
+
 } 
+
 
 function deleteStudent(estudiante){
     const sqlInsert = "DELETE FROM estudiantes WHERE Numero_Documento = (?)"
