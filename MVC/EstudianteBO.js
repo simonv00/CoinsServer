@@ -2,10 +2,11 @@ import v from "validator";
 import insertStudent from './EstudianteDAO.js'
 import estudiante from './Estudiante.js'
 /* import Controlador from "./Controlador" */
-
+var ItSaved = false
 export default class EstudianteBO{
 
-    static validateAll(estudiante){
+
+    static validateAll(estudiante,callback){
 
         const {nombre1, nombre2, apellido1, apellido2, telefono, correo, id, tipoID, monto, estado} = estudiante
             const isNombre1 = this.validateAlpha(nombre1)
@@ -16,7 +17,7 @@ export default class EstudianteBO{
             const isTelefono = this.validateNumber(telefono)
             const isID = this.validateID(id)
             const isMonto = this.validateMonto(monto)
-            var ItSaved = false
+
         if(
             isNombre1 &&
             isNombre2 &&
@@ -28,7 +29,20 @@ export default class EstudianteBO{
             isMonto
             
         ){
-            ItSaved = insertStudent(estudiante)
+            const x = insertStudent(estudiante, (value)=>{
+                return callback( {
+                    isNombre1,
+                    isNombre2,
+                    isApellido1,
+                    isApellido2,
+                    isCorreo,
+                    isTelefono,
+                    isID,
+                    isMonto,
+                    ItSaved: value
+                })
+            })
+
         }
         return {
             isNombre1,
