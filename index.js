@@ -9,6 +9,7 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+//objeto de conexion con base de datos
 const db = mySql.createPool({
     host: 'localhost' ,
     user: 'root' ,
@@ -16,6 +17,8 @@ const db = mySql.createPool({
     database: 'Coins'
 });
 
+
+// en este metodo se obtienen los estudiantes de la base de datos y se remiten al frontend
 app.get('/Listar/api/get', (req, res) => {
     const sqlInsert = "SELECT * FROM estudiantes"
     db.query(sqlInsert, (err, result) => {
@@ -23,6 +26,8 @@ app.get('/Listar/api/get', (req, res) => {
     })
 })
 
+
+// en este metodo se obtiene la info de los estudiantes, luego se valida o rechaza, y se devuelve el mensaje al front
 app.post('/Registro/api/insert', (req,res) => {
     try {
         const {Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado} = req.body
@@ -36,6 +41,9 @@ app.post('/Registro/api/insert', (req,res) => {
         return res.send("bad request").status(400)
     }
 })
+
+
+
 
 app.delete('/Registro/api/delete', (req,res) => {
     try {

@@ -1,11 +1,10 @@
 import v from "validator";
 import insertStudent from './EstudianteDAO.js'
-import estudiante from './Estudiante.js'
-/* import Controlador from "./Controlador" */
+
 var ItSaved = false
 export default class EstudianteBO{
 
-
+// este es el Bussiness Object, aca se validan los datos, con las siguientes funciones
     static validateAll(estudiante,callback){
 
         const {nombre1, nombre2, apellido1, apellido2, telefono, correo, id, tipoID, monto, estado} = estudiante
@@ -18,7 +17,7 @@ export default class EstudianteBO{
             const isID = this.validateID(id)
             const isMonto = this.validateMonto(monto)
 
-        if(
+        const AllGood =(
             isNombre1 &&
             isNombre2 &&
             isApellido1 &&
@@ -26,10 +25,10 @@ export default class EstudianteBO{
             isCorreo &&
             isTelefono &&
             isID &&
-            isMonto
-            
-        ){
-            const x = insertStudent(estudiante, (value)=>{
+            isMonto    
+        )?true:false
+
+            const x = insertStudent(estudiante,AllGood, (value)=>{
                 return callback( {
                     isNombre1,
                     isNombre2,
@@ -43,18 +42,6 @@ export default class EstudianteBO{
                 })
             })
 
-        }
-        return {
-            isNombre1,
-            isNombre2,
-            isApellido1,
-            isApellido2,
-            isCorreo,
-            isTelefono,
-            isID,
-            isMonto,
-            ItSaved
-        }
     }
 
 

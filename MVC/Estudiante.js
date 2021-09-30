@@ -1,3 +1,5 @@
+
+// DTO objeto de transferencia de datos, estudiante
 class Estudiante {
     constructor(id,nombre1, nombre2, apellido1, apellido2, telefono,tipoID, correo,  monto, estado) {
         this.nombre1 = nombre1

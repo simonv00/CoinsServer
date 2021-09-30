@@ -1,12 +1,15 @@
 import Estudiante from './Estudiante.js'
 import validacion from './EstudianteBO.js'
 
+//esta funcion crea los objetos estudiantes y los remite a la validacion
+
 export default function controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado,callback) {
     const student = new Estudiante(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado)
     return validacion.validateAll(student,(value)=>{
         return callback(value)
     })
 } 
+
 function controladorDelete(Numero_Documento) {
     const student = new Estudiante(Numero_Documento)
 } 
