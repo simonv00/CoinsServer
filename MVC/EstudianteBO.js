@@ -1,13 +1,38 @@
-import v from "validator";
-import insertStudent from './EstudianteDAO.js'
+/* import v from "validator";
+import insertStudent from './EstudianteDAO.js' */
+
+const v = require('validator')
+const insertStudent = require('./EstudianteDAO.js')
 
 var ItSaved = false
-export default class EstudianteBO{
+module.exports = class EstudianteBO{
 
 // este es el Bussiness Object, aca se validan los datos, con las siguientes funciones
-    static validateAll(estudiante,callback){
+    static validateInsert(estudiante,callback){
 
-        const {nombre1, nombre2, apellido1, apellido2, telefono, correo, id, tipoID, monto, estado} = estudiante
+        const {isNombre1, isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto,AllGood,isCarrera }=this.validateAll(estudiante)
+
+            const x = insertStudent(estudiante,AllGood, (value)=>{
+                
+                return callback({
+                    isNombre1,
+                    isNombre2,
+                    isApellido1,
+                    isApellido2,
+                    isCorreo,
+                    isTelefono,
+                    isID,
+                    isMonto,
+                    isCarrera,
+                    ItSaved: value
+                })
+            })
+
+    }
+
+    static validateAll(estudiante){
+
+        const {nombre1, nombre2, apellido1, apellido2, telefono, correo, id, tipoID, monto, estado, esEstudiante, carrera} = estudiante
             const isNombre1 = this.validateAlpha(nombre1)
             const isNombre2 = this.validateAlpha2(nombre2)
             const isApellido1 = this.validateAlpha(apellido1) 
@@ -16,6 +41,7 @@ export default class EstudianteBO{
             const isTelefono = this.validateNumber(telefono)
             const isID = this.validateID(id)
             const isMonto = this.validateMonto(monto)
+            const isCarrera = this.validateCarrera(carrera,esEstudiante)
 
         const AllGood =(
             isNombre1 &&
@@ -25,22 +51,22 @@ export default class EstudianteBO{
             isCorreo &&
             isTelefono &&
             isID &&
+            isCarrera &&
             isMonto    
         )?true:false
 
-            const x = insertStudent(estudiante,AllGood, (value)=>{
-                return callback( {
-                    isNombre1,
-                    isNombre2,
-                    isApellido1,
-                    isApellido2,
-                    isCorreo,
-                    isTelefono,
-                    isID,
-                    isMonto,
-                    ItSaved: value
-                })
-            })
+        return {
+            isNombre1,
+            isNombre2,
+            isApellido1,
+            isApellido2,
+            isCorreo,
+            isTelefono,
+            isID,
+            isMonto,
+            isCarrera,
+            AllGood:AllGood
+        }
 
     }
 
@@ -80,4 +106,13 @@ export default class EstudianteBO{
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
+
+    static validateCarrera(data, esEstudiante){
+        if (!esEstudiante){return true}
+        var aprobado = (v.isLength(data,1,45))
+        if(!aprobado) console.log(' fallando aqui con '+ data)
+        return aprobado
+    }
 } 
+
+/* export default EstudianteBO */

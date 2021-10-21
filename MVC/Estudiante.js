@@ -1,7 +1,7 @@
 
 // DTO objeto de transferencia de datos, estudiante
-class Estudiante {
-    constructor(id,nombre1, nombre2, apellido1, apellido2, telefono,tipoID, correo,  monto, estado) {
+module.exports = class Estudiante {
+    constructor(id,nombre1, nombre2, apellido1, apellido2, telefono,tipoID, correo,  monto, estado, esEstudiante,carrera) {
         this.nombre1 = nombre1
         this.nombre2 = nombre2
         this.apellido1 = apellido1
@@ -12,6 +12,8 @@ class Estudiante {
         this.tipoID = tipoID
         this.monto = monto
         this.estado = estado
+        this.esEstudiante = esEstudiante
+        this.carrera = carrera
     }
 
     get nombre1() {
@@ -93,6 +95,25 @@ class Estudiante {
     set id(newId) {
         this._id = newId
     }
+
+    get esEstudiante() {
+        return this._esEstudiante
+    }
+    
+    set esEstudiante(newEsEstudiante) {
+        this._esEstudiante = newEsEstudiante
+    }
+
+    get carrera() {
+        return this._carrera
+    }
+
+    set carrera(newCarrera) {
+        this._carrera = newCarrera
+    }
 }
 
-export default Estudiante
+
+
+
+/* export default Estudiante */

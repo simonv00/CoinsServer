@@ -1,4 +1,6 @@
-import mySql from "mysql";
+/* import mySql from "mysql"; */
+
+const mySql = require('mysql')
 
 // conexion con la base de datos
 const db = mySql.createPool({
@@ -10,26 +12,26 @@ const db = mySql.createPool({
 
 
 // funcion donde se inserta estudiante en base de datos
-export default async function insertStudent(estudiante,AllGood, callback) {
+module.exports = async function insertStudent(estudiante,AllGood, callback) {
 
     if (!AllGood) return callback(false) // esta opcion verifica que todas las validfaciones esten correctas
     const sqlExists = "SELECT * from estudiantes WHERE Numero_Documento= (?) OR Correo = (?)";
-    const sqlInsert = "INSERT INTO estudiantes (Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    const {id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado,} = estudiante;
+    const sqlInsert = "INSERT INTO estudiantes (Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado, esEstudiante,carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    const {id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado, esEstudiante,carrera} = estudiante;
 
     db.query(sqlExists, [id, correo], (err, result) => {
-    console.log(result);
     if (result.length == 0) {
-        db.query(sqlInsert,[id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado,],(err, result) => {
+        db.query(sqlInsert,[id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado,esEstudiante,carrera],(err, result) => {
             if (err) {
                 throw err;
             }
+            /* console.log('added to db successfully') */
         }
       );
       // la insercion fue correcta
       return callback(true);
     } else {
-      console.log("dato duplicado");
+      
       //hay un error, probablemente un dato duplicado
       return callback(false);
     }
@@ -47,3 +49,5 @@ function deleteStudent(estudiante) {
     console.log(result);
   });
 }
+
+/* export default insertStudent */

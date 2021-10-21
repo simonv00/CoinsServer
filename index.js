@@ -1,9 +1,16 @@
-import express from 'express'
+/* import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import controlador from './MVC/Controlador.js'
+import mySql from 'mysql' */
+
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const controlador = require('./MVC/Controlador.js')
+const mySql = require('mysql')
+
 const app = express()
-import mySql from 'mysql'
 
 app.use(cors())
 app.use(express.json())
@@ -30,8 +37,8 @@ app.get('/Listar/api/get', (req, res) => {
 // en este metodo se obtiene la info de los estudiantes, luego se valida o rechaza, y se devuelve el mensaje al front
 app.post('/Registro/api/insert', (req,res) => {
     try {
-        const {Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado} = req.body
-        const x = controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado,(value)=>{
+        const {Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado, esEstudiante,carrera} = req.body
+        const x = controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado, esEstudiante,carrera,(value)=>{
             console.log(value)
             return res.send(value).status(200)
         })

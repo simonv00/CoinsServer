@@ -1,15 +1,21 @@
-import Estudiante from './Estudiante.js'
-import validacion from './EstudianteBO.js'
+/* import Estudiante from './Estudiante.js'
+import validacion from './EstudianteBO.js' */
+
+const Estudiante = require('./Estudiante')
+const validacion = require('./EstudianteBO')
 
 //esta funcion crea los objetos estudiantes y los remite a la validacion
 
-export default function controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado,callback) {
-    const student = new Estudiante(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado)
-    return validacion.validateAll(student,(value)=>{
+module.exports = function controlador(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado,esEstudiante, carrera,callback) {
+    const student = new Estudiante(Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado, esEstudiante, carrera)
+    console.log('Estudiante: ',student)
+    return validacion.validateInsert(student,(value)=>{
         return callback(value)
     })
-} 
+}
 
 function controladorDelete(Numero_Documento) {
     const student = new Estudiante(Numero_Documento)
 } 
+
+/* export default controlador */
