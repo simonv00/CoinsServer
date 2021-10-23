@@ -16,12 +16,14 @@ test('la validacion de todos los campos es correcta',() => {
         'CC',
         'pablito.isaza3@eia.edu.com',
         4000,
-        true
+        true,
+        true,
+        ''
     )
 
         expect(validacion.validateAll(e)).toStrictEqual(
             {
-                isNombre1:false,
+                isNombre1:true,
                 isNombre2:true,
                 isApellido1:true,
                 isApellido2:true,
@@ -29,7 +31,9 @@ test('la validacion de todos los campos es correcta',() => {
                 isTelefono:true,
                 isID:true,
                 isMonto:true,
-                AllGood: false
+                AllGood: false,
+                isCarrera: false
+
             }
         )
 

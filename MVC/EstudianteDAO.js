@@ -23,7 +23,8 @@ module.exports = async function insertStudent(estudiante,AllGood, callback) {
     if (result.length == 0) {
         db.query(sqlInsert,[id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado,esEstudiante,carrera],(err, result) => {
             if (err) {
-                throw err;
+              
+                return callback(false)
             }
             /* console.log('added to db successfully') */
         }
