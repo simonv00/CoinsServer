@@ -3,6 +3,7 @@ import insertStudent from './EstudianteDAO.js' */
 
 const v = require('validator')
 const insertStudent = require('./EstudianteDAO.js')
+const checkStudent = require('./EstudianteDAO.js')
 
 var ItSaved = false
 module.exports = class EstudianteBO{
@@ -11,22 +12,24 @@ module.exports = class EstudianteBO{
     static validateInsert(estudiante,callback){
 
         const {isNombre1, isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto,AllGood,isCarrera }=this.validateAll(estudiante)
-
-            const x = insertStudent(estudiante,AllGood, (value)=>{
-                
-                return callback({
-                    isNombre1,
-                    isNombre2,
-                    isApellido1,
-                    isApellido2,
-                    isCorreo,
-                    isTelefono,
-                    isID,
-                    isMonto,
-                    isCarrera,
-                    ItSaved: value
-                })
+        const y = checkStudent(estudiante, AllGood, (value)=>{
+            AllGood = value
+        })
+        const x = insertStudent(estudiante,AllGood, (value)=>{
+            
+            return callback({
+                isNombre1,
+                isNombre2,
+                isApellido1,
+                isApellido2,
+                isCorreo,
+                isTelefono,
+                isID,
+                isMonto,
+                isCarrera,
+                ItSaved: value
             })
+        })
 
     }
 
