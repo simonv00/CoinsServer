@@ -102,7 +102,7 @@ module.exports = class EstudianteBO{
     }
 
     static validateID(data){
-        var aprobado = (v.isLength(data,1,20))
+        var aprobado = (v.isLength(data,1,20) && v.isAlphanumeric(data))
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
