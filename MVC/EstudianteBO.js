@@ -1,36 +1,30 @@
-/* import v from "validator";
-import insertStudent from './EstudianteDAO.js' */
-
 const v = require('validator')
+const checkStudent = require('./EstudianteDAOCheck.js')
 const insertStudent = require('./EstudianteDAO.js')
-const checkStudent = require('./EstudianteDAO.js')
 
 var ItSaved = false
 module.exports = class EstudianteBO{
 
 // este es el Bussiness Object, aca se validan los datos, con las siguientes funciones
     static validateInsert(estudiante,callback){
-
         const {isNombre1, isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto,AllGood,isCarrera }=this.validateAll(estudiante)
-        const y = checkStudent(estudiante, AllGood, (value)=>{
-            AllGood = value
-        })
-        const x = insertStudent(estudiante,AllGood, (value)=>{
-            
-            return callback({
-                isNombre1,
-                isNombre2,
-                isApellido1,
-                isApellido2,
-                isCorreo,
-                isTelefono,
-                isID,
-                isMonto,
-                isCarrera,
-                ItSaved: value
+        var AllGood2 = true
+        const y = checkStudent(estudiante, AllGood, (value1)=>{
+            const x = insertStudent(estudiante,value1, (value)=>{
+                return callback({
+                    isNombre1,
+                    isNombre2,
+                    isApellido1,
+                    isApellido2,
+                    isCorreo,
+                    isTelefono,
+                    isID,
+                    isMonto,
+                    isCarrera,
+                    ItSaved: value
+                })
             })
         })
-
     }
 
     static validateAll(estudiante){
@@ -73,7 +67,6 @@ module.exports = class EstudianteBO{
 
     }
 
-
     static validateAlpha(data){
         var aprobado = (v.isAlpha(data) && v.isLength(data, 1, 45))
         if(!aprobado) console.log(' fallando aqui con '+ data)
@@ -87,7 +80,7 @@ module.exports = class EstudianteBO{
     }
 
     static validateNumber(data){
-        var aprobado = (v.isNumeric(data.toString()) && v.isLength(data.toString(), 7,12) )
+        var aprobado = (v.isNumeric(data.toString()) && v.isLength(data.toString(), 7,10) )
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
