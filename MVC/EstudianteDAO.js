@@ -13,13 +13,14 @@ const db = mySql.createPool({
 
 // funcion donde se inserta estudiante en base de datos
 module.exports = async function insertStudent(estudiante,AllGood, callback) {
-
     if (!AllGood) return callback(false) // esta opcion verifica que todas las validfaciones esten correctas
     const sqlInsert = "INSERT INTO estudiantes (Numero_Documento, Primer_Nombre, Segundo_Nombre, Primer_Apellido, Segundo_Apellido, Celular, Tipo_Documento, Correo, Saldo, Estado, esEstudiante,carrera) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
     const {id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado, esEstudiante,carrera} = estudiante;
+    console.log(AllGood)
+
     db.query(sqlInsert,[id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado,esEstudiante,carrera],(err, result) => {
         if (err) {
-          
+            console.log(err)
             return callback(false)
         }
         else{
@@ -27,34 +28,4 @@ module.exports = async function insertStudent(estudiante,AllGood, callback) {
         }
     }
   );  
-}
-
-
-function deleteStudent(estudiante) {
-  const sqlInsert = "DELETE FROM estudiantes WHERE Numero_Documento = (?)";
-  const { id } = estudiante;
-  db.query(sqlInsert, [id], (err, result) => {
-    if (err) {
-      throw err; // Aca esta el problema. Es cuando se envia un dato erroneo o duplicado.
-    }
-    console.log(result);
-  });
-}
-
-/* export default insertStudent */
-module.exports = async function checkStudent(estudiante,AllGood, callback) {
-
-  if (!AllGood) return callback(false) // esta opcion verifica que todas las validfaciones esten correctas
-  const sqlExists = "SELECT * from estudiantes WHERE Numero_Documento= (?) OR Correo = (?)";
-  const {id,nombre1,nombre2,apellido1,apellido2,telefono,tipoID,correo,monto,estado, esEstudiante,carrera} = estudiante;
-
-  db.query(sqlExists, [id, correo], (err, result) => {
-    if (result.length == 0) {
-      // El dato no esta en la base de datos
-      return callback(true);
-    } else {
-      //hay un error, probablemente un dato duplicado
-      return callback(false);
-    }
-  });
 }
