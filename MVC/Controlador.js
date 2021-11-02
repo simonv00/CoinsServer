@@ -14,8 +14,4 @@ module.exports = function controlador(Numero_Documento, Primer_Nombre, Segundo_N
     })
 }
 
-function controladorDelete(Numero_Documento) {
-    const student = new Estudiante(Numero_Documento)
-} 
-
 /* export default controlador */
