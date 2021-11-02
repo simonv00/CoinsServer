@@ -8,6 +8,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const controlador = require('./MVC/Controlador.js')
+const controladorMonto = require('./MVC/ControladorMonto2.js')
 const mySql = require('mysql')
 
 const app = express()
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 const db = mySql.createPool({
     host: 'localhost' ,
     user: 'root' ,
-    password: '011298' ,
+    password: 'pinguino' ,
     database: 'Coins'
 });
 
@@ -49,7 +50,20 @@ app.post('/Registro/api/insert', (req,res) => {
     }
 })
 
-
+app.post('/Registro/api/changeMonto', (req,res) => {
+    try {
+        const {Numero_Documento, Tipo_Documento, Saldo} = req.body
+        console.log(Saldo)
+        const x = controladorMonto(Numero_Documento, Tipo_Documento,Saldo,(value)=>{
+            console.log(value)
+            return res.send(value).status(200)
+        })
+    } catch (error) {
+        //throw error
+        console.log(error)
+        return res.send("bad request").status(400)
+    }
+})
 
 
 app.delete('/Registro/api/delete', (req,res) => {
