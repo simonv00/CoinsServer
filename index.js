@@ -13,7 +13,9 @@ const mySql = require('mysql')
 
 const app = express()
 
-app.use(cors())
+app.use(cors({ origin: "https://coins-interfaz.herokuapp.com/", credentials: true }))
+app.use(cors({ origin: "*", credentials: true }))
+
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
