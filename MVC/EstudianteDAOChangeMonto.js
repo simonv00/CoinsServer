@@ -4,10 +4,14 @@ const mySql = require('mysql')
 
 // conexion con la base de datos
 const db = mySql.createPool({
-  host: "localhost",
+  /*host: "localhost",
   user: "root",
   password: "pinguino",
-  database: "Coins",
+  database: "Coins",*/
+  database: 'heroku_d82a79d0d95c282',
+  username: 'b57ee4f0f0f1e3',
+  host: 'us-cdbr-east-04.cleardb.com',
+  password: '0646d789',
 });
 
 module.exports = async function changeMonto(montoObj, AllGood, callback) {
