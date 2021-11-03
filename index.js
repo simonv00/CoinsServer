@@ -19,10 +19,14 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 //objeto de conexion con base de datos
 const db = mySql.createPool({
-    host: 'localhost' ,
-    user: 'root' ,
-    password: 'pinguino' ,
-    database: 'Coins'
+    //host: 'localhost' ,
+    //user: 'root' ,
+    //password: 'pinguino' ,
+    //database: 'Coins'
+    database: 'heroku_d82a79d0d95c282',
+    username: 'b57ee4f0f0f1e3',
+    host: 'us-cdbr-east-04.cleardb.com',
+    password: '0646d789',
 });
 
 
