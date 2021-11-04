@@ -9,7 +9,7 @@ const db = mySql.createPool({
   password: "pinguino",
   database: "Coins",*/
   database: 'sql10448835',
-  username: 'sql10448835',
+  user: 'sql10448835',
   host: 'sql10.freemysqlhosting.net',
   password: 'ssU2dhtbJz',
 });
