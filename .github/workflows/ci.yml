@@ -24,4 +24,9 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
+    - name: Add remote origin
+          run: |
+            git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+        - name: Deploy to Heroku
+          run: |
+            git push heroku HEAD:Produccion -f
