@@ -6,7 +6,6 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "devStart": "nodemon index.js",
         "test": "jest",
         "wdio": "wdio run wdio.conf.js"
     },
@@ -18,7 +17,7 @@
         "express": "^4.17.1",
         "mysql": "^2.18.1",
         "mysql-await": "^2.1.8",
-        "nodemon": "^2.0.12",
+        
         "validator": "^13.6.0",
         "webdriverio": "^7.16.0"
     },
