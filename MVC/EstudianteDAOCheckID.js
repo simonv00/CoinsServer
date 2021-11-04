@@ -4,10 +4,14 @@ const mySql = require('mysql')
 
 // conexion con la base de datos
 const db = mySql.createPool({
-  host: "localhost",
+  /*host: "localhost",
   user: "root",
   password: "pinguino",
-  database: "Coins",
+  database: "Coins",*/
+  database: 'sql10448835',
+  user: 'sql10448835',
+  host: 'sql10.freemysqlhosting.net',
+  password: 'ssU2dhtbJz',
 });
 
 

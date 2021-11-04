@@ -14,22 +14,29 @@ const mySql = require('mysql')
 const app = express()
 
 app.use(cors())
+
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 //objeto de conexion con base de datos
 const db = mySql.createPool({
-    host: 'localhost' ,
-    user: 'root' ,
-    password: 'pinguino' ,
-    database: 'Coins'
+    //host: 'localhost' ,
+    //user: 'root' ,
+    //password: 'pinguino' ,
+    //database: 'Coins'
+    database: 'sql10448835',
+    user: 'sql10448835',
+    host: 'sql10.freemysqlhosting.net',
+    password: 'ssU2dhtbJz',
 });
 
 
 // en este metodo se obtienen los estudiantes de la base de datos y se remiten al frontend
 app.get('/Listar/api/get', (req, res) => {
     const sqlInsert = "SELECT * FROM estudiantes"
-    db.query(sqlInsert, (err, result) => {
+    console.log("result")
+    db.query(sqlInsert, async(err, result) => {
+        await console.log(result)
         res.send(result)
     })
 })
@@ -80,7 +87,7 @@ app.delete('/Registro/api/delete', (req,res) => {
 })
 
 
-app.listen(3001,()=>{
+app.listen(process.env.PORT || 3001,()=>{
     console.log('running on 3001')
 })
 
