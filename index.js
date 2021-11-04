@@ -24,17 +24,19 @@ const db = mySql.createPool({
     //user: 'root' ,
     //password: 'pinguino' ,
     //database: 'Coins'
-    database: 'heroku_d82a79d0d95c282',
-    username: 'b57ee4f0f0f1e3',
-    host: 'us-cdbr-east-04.cleardb.com',
-    password: '0646d789',
+    database: 'sql10448835',
+    user: 'sql10448835',
+    host: 'sql10.freemysqlhosting.net',
+    password: 'ssU2dhtbJz',
 });
 
 
 // en este metodo se obtienen los estudiantes de la base de datos y se remiten al frontend
 app.get('/Listar/api/get', (req, res) => {
     const sqlInsert = "SELECT * FROM estudiantes"
-    db.query(sqlInsert, (err, result) => {
+    console.log("result")
+    db.query(sqlInsert, async(err, result) => {
+        await console.log(result)
         res.send(result)
     })
 })
@@ -85,7 +87,7 @@ app.delete('/Registro/api/delete', (req,res) => {
 })
 
 
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT || 3001,()=>{
     console.log('running on 3001')
 })
 
