@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const controlador = require('./MVC/Controlador.js')
 const controladorMonto = require('./MVC/ControladorMonto2.js')
+const controladorPlaca = require('./MVC/ControladorPlaca.js')
 const mySql = require('mysql')
 
 const app = express()
@@ -72,6 +73,20 @@ app.post('/Registro/api/changeMonto', (req,res) => {
     }
 })
 
+app.post('/Registro/api/agregarPlaca', (req,res) => {
+    try {
+        const {Numero_Documento, Tipo_Documento, Placa} = req.body
+        console.log(Placa)
+        const x = controladorPlaca(Numero_Documento, Tipo_Documento,Placa,(value)=>{
+            console.log(value)
+            return res.send(value).status(200)
+        })
+    } catch (error) {
+        //throw error
+        console.log(error)
+        return res.send("bad request").status(400)
+    }
+})
 
 app.delete('/Registro/api/delete', (req,res) => {
     try {
