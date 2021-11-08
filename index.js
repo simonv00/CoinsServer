@@ -116,6 +116,20 @@ app.delete('/Registro/api/delete', (req,res) => {
     }
 })
 
+app.post('/Registro/api/agregarMensaje', (req,res) => {
+    try {
+        const {Numero_Documento, Tipo_Documento, Mensaje} = req.body
+        console.log(Mensaje)
+        const x = controladorMensaje(Numero_Documento, Tipo_Documento,Mensaje,(value)=>{
+            console.log(value)
+            return res.send(value).status(200)
+        })
+    } catch (error) {
+        //throw error
+        console.log(error)
+        return res.send("bad request").status(400)
+    }
+})
 
 app.listen(process.env.PORT || 3001,()=>{
     console.log('running on 3001')
