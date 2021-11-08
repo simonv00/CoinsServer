@@ -58,6 +58,22 @@ app.get('/Listar/api/getPlaca', (req, res) => {
     }
 })
 
+app.get('/Listar/api/getMensaje', (req, res) => {
+    try {
+        const {Numero_Documento} = req.body
+        const sqlInsert = "SELECT * FROM Mensajes"
+        console.log("result")
+        db.query(sqlInsert, async(err, result) => {
+            await console.log(result)
+            res.send(result)
+        })
+    } catch (error) {
+        //throw error
+        console.log(error)
+        return res.send("bad request").status(400)
+    }
+})
+
 // en este metodo se obtiene la info de los estudiantes, luego se valida o rechaza, y se devuelve el mensaje al front
 app.post('/Registro/api/insert', (req,res) => {
     try {
@@ -120,7 +136,7 @@ app.post('/Registro/api/agregarMensaje', (req,res) => {
     try {
         const {Numero_Documento, Tipo_Documento, Mensaje} = req.body
         console.log(Mensaje)
-        const x = controladorMensaje(Numero_Documento, Tipo_Documento,Mensaje,(value)=>{
+        const x = ControladorMensaje(Numero_Documento, Tipo_Documento,Mensaje,(value)=>{
             console.log(value)
             return res.send(value).status(200)
         })
