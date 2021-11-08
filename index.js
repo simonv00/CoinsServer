@@ -49,7 +49,7 @@ app.get('/Listar/api/getPlaca', (req, res) => {
         console.log("result")
         db.query(sqlInsert,[Numero_Documento], async(err, result) => {
             await console.log(result)
-            res.send(result)
+            res.send(Numero_Documento)
         })
     } catch (error) {
         //throw error
