@@ -10,6 +10,7 @@ const cors = require('cors')
 const controlador = require('./MVC/Controlador.js')
 const controladorMonto = require('./MVC/ControladorMonto2.js')
 const controladorPlaca = require('./MVC/ControladorPlaca.js')
+const controladorMensaje = require('./MVC/ControladorMensaje.js')
 const mySql = require('mysql')
 
 const app = express()
@@ -136,7 +137,7 @@ app.post('/Registro/api/agregarMensaje', (req,res) => {
     try {
         const {Numero_Documento, Tipo_Documento, Mensaje} = req.body
         console.log(Mensaje)
-        const x = ControladorMensaje(Numero_Documento, Tipo_Documento,Mensaje,(value)=>{
+        const x = controladorMensaje(Numero_Documento, Tipo_Documento,Mensaje,(value)=>{
             console.log(value)
             return res.send(value).status(200)
         })
