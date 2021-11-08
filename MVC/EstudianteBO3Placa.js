@@ -23,7 +23,7 @@ module.exports = class EstudianteBO3Placa{
     
     static validateSome(placaObj){
         const {id, tipoID, placa} = placaObj
-    
+        console.log("hola")
         const isID = this.validateID(id)
         const isPlaca = this.validatePlaca(placa)
         const AllGood =(
