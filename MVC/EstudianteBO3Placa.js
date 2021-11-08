@@ -7,7 +7,7 @@ module.exports = class EstudianteBO3Placa{
 
     // este es el Bussiness Object, aca se validan los datos, con las siguientes funciones
 
-    static validateCambio(montoObj,callback){
+    static validatePlaca(montoObj,callback){
         const {isID,isMonto,AllGood}=this.validateSome(montoObj)
 
         const y = checkStudentID(montoObj, AllGood, (value1)=>{
