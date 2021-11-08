@@ -45,11 +45,11 @@ app.get('/Listar/api/get', (req, res) => {
 app.get('/Listar/api/getPlaca', (req, res) => {
     try {
         const {Numero_Documento} = req.body
-        const sqlInsert = "SELECT * FROM Placas WHERE Numero_Documento = (?)"
+        const sqlInsert = "SELECT * FROM Placas"
         console.log("result")
-        db.query(sqlInsert,[Numero_Documento], async(err, result) => {
+        db.query(sqlInsert, async(err, result) => {
             await console.log(result)
-            res.send(Numero_Documento)
+            res.send(result)
         })
     } catch (error) {
         //throw error
