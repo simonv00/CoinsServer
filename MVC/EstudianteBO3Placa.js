@@ -8,6 +8,7 @@ module.exports = class EstudianteBO3Placa{
 // este es el Bussiness Object, aca se validan los datos, con las siguientes funciones
 
     static validatePlaca(placaObj,callback){
+        console.log("hola")
         const {isID,isPlaca,AllGood}=this.validateSome(placaObj)
     
         const y = checkStudentID(placaObj, AllGood, (value1)=>{
@@ -23,7 +24,6 @@ module.exports = class EstudianteBO3Placa{
     
     static validateSome(placaObj){
         const {id, tipoID, placa} = placaObj
-        console.log("hola")
         const isID = this.validateID(id)
         const isPlaca = this.validatePlaca(placa)
         const AllGood =(
