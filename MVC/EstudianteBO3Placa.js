@@ -7,14 +7,14 @@ module.exports = class EstudianteBO3Placa{
 
     // este es el Bussiness Object, aca se validan los datos, con las siguientes funciones
 
-    static validatePlaca(montoObj,callback){
-        const {isID,isMonto,AllGood}=this.validateSome(montoObj)
+    static validatePlaca(placaObj,callback){
+        const {isID,isPlaca,AllGood}=this.validateSome(placaObj)
 
-        const y = checkStudentID(montoObj, AllGood, (value1)=>{
-            const x = changeMonto(montoObj, value1, (value)=>{
+        const y = checkStudentID(placaObj, AllGood, (value1)=>{
+            const x = agregarPlaca(placaObj, value1, (value)=>{
                 return callback({
                     isID,
-                    isMonto,
+                    isPlaca,
                     ItSaved: value
                 })
             })
@@ -22,25 +22,25 @@ module.exports = class EstudianteBO3Placa{
 
     }
 
-    static validateSome(montoObj){
-        const {id, tipoID, monto} = montoObj
+    static validateSome(placaObj){
+        const {id, tipoID, placa} = placaObj
 
         const isID = this.validateID(id)
-        const isMonto = this.validateMonto(monto)
+        const isPlaca = this.validatePlacaNum(placa)
         const AllGood =(
             isID &&
-            isMonto    
+            isPlaca    
         )?true:false
         return {
             isID,
-            isMonto,
+            isPlaca,
             AllGood:AllGood
         }
     }
 
 
-    static validateMonto(data){
-        var aprobado = (v.isNumeric(data.toString()) && data > -5000 && data < 500000)
+    static validatePlacaNum(data){
+        var aprobado = (v.isLength(data,5,6))
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
