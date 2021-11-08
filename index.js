@@ -42,6 +42,21 @@ app.get('/Listar/api/get', (req, res) => {
     })
 })
 
+app.get('/Listar/api/getPlaca', (req, res) => {
+    try {
+        const {Numero_Documento} = req.body
+        const sqlInsert = "SELECT * FROM estudiantes"
+        console.log("result")
+        db.query(sqlInsert, async(err, result) => {
+            await console.log(result)
+            res.send(result)
+        })
+    } catch (error) {
+        //throw error
+        console.log(error)
+        return res.send("bad request").status(400)
+    }
+})
 
 // en este metodo se obtiene la info de los estudiantes, luego se valida o rechaza, y se devuelve el mensaje al front
 app.post('/Registro/api/insert', (req,res) => {
