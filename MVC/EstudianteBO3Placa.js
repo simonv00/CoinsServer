@@ -1,6 +1,6 @@
 const v = require('validator')
 const checkStudentID = require('./EstudianteDAOCheckID.js')
-const agregarPlaca = require('./EstudianteDAOAgregarPlaca.js')
+const agregarPlaca = require('./EstudianteDAOPlaca.js')
 
 var ItSaved = false
 module.exports = class EstudianteBO3Placa{
