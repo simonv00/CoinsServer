@@ -11,7 +11,7 @@ module.exports = class PlacaObj {
     }
 
     set placa(newPlaca) {
-        this._monto = newPlaca
+        this._placa = newPlaca
     }
 
     get tipoID() {
