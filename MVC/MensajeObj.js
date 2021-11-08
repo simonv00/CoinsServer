@@ -7,7 +7,7 @@ module.exports = class MensajeObj {
     }
 
     get mensaje() {
-        return this.mensaje
+        return this._mensaje
     }
 
     set mensaje(newMensaje) {
