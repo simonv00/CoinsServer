@@ -2,7 +2,6 @@
 module.exports = class PlacaObj {
     constructor(id,placa) {
         this.id = id
-        this.tipoID = tipoID
         this.placa = placa
     }
 

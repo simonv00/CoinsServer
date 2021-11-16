@@ -116,7 +116,7 @@ app.post('/Registro/api/agregarPlaca', (req,res) => {
     } catch (error) {
         //throw error
         console.log(error)
-        return res.send(error).status(400)
+        return res.send('bad request').status(400)
     }
 })
 
