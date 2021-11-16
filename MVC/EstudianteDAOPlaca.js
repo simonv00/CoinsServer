@@ -16,7 +16,7 @@ const db = mySql.createPool({
 
 module.exports = async function agregarPlaca(placaObj, AllGood, callback) {
 
-    if (!AllGood) return callback(false) // esta opcion verifica que todas las validfaciones esten correctas
+    if (!AllGood) return callback(false) // esta opcion verifica que todas las validaciones esten correctas
     const sqlPlaca = "INSERT INTO Placas (Numero_Documento,Placa) VALUES (?,?)";
     const {id, placa} = placaObj;
   
