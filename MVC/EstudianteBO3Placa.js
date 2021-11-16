@@ -23,7 +23,7 @@ module.exports = class EstudianteBO3Placa{
     }
 
     static validateSome(placaObj){
-        const {id, tipoID, placa} = placaObj
+        const {id, placa} = placaObj
 
         const isID = this.validateID(id)
         const isPlaca = this.validatePlacaNum(placa)
@@ -40,7 +40,7 @@ module.exports = class EstudianteBO3Placa{
 
 
     static validatePlacaNum(data){
-        var aprobado = (v.isLength(data,5,6))
+        var aprobado = (v.isLength(data,1,20))
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
