@@ -24,7 +24,7 @@ module.exports = async function agregarPlaca(placaObj, AllGood, callback) {
       //console.log(result)
       if (err) {
         //console.log(err)
-        return callback(false)
+        return callback({itSaved:false,error:err})
       }
       else{
         return callback(true)
