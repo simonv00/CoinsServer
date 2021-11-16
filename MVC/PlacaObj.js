@@ -1,6 +1,6 @@
 // DTO objeto de transferencia de datos, estudiante
 module.exports = class PlacaObj {
-    constructor(id,tipoID,placa) {
+    constructor(id,placa) {
         this.id = id
         this.tipoID = tipoID
         this.placa = placa
@@ -12,14 +12,6 @@ module.exports = class PlacaObj {
 
     set placa(newPlaca) {
         this._placa = newPlaca
-    }
-
-    get tipoID() {
-        return this._tipoID
-    }
-
-    set tipoID(newTipoID) {
-        this._tipoID = newTipoID
     }
 
     get id() {

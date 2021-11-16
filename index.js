@@ -107,9 +107,9 @@ app.post('/Registro/api/changeMonto', (req,res) => {
 
 app.post('/Registro/api/agregarPlaca', (req,res) => {
     try {
-        const {Numero_Documento, Tipo_Documento, Placa} = req.body
+        const {Numero_Documento, Placa} = req.body
         console.log(Placa)
-        const x = controladorPlaca(Numero_Documento, Tipo_Documento,Placa,(value)=>{
+        const x = controladorPlaca(Numero_Documento,Placa,(value)=>{
             console.log(value)
             return res.send(value).status(200)
         })
@@ -119,6 +119,7 @@ app.post('/Registro/api/agregarPlaca', (req,res) => {
         return res.send("bad request").status(400)
     }
 })
+
 
 app.delete('/Registro/api/delete', (req,res) => {
     try {

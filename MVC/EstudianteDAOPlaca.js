@@ -18,7 +18,7 @@ module.exports = async function agregarPlaca(placaObj, AllGood, callback) {
 
     if (!AllGood) return callback(false) // esta opcion verifica que todas las validfaciones esten correctas
     const sqlPlaca = "INSERT INTO Placas (Numero_Documento,Placa) VALUES (?,?)";
-    const {id, placa, tipoID} = placaObj;
+    const {id, placa} = placaObj;
   
     db.query(sqlPlaca, [id, placa],(err,result) => {
       //console.log(result)
