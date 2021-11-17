@@ -46,6 +46,7 @@ module.exports = class EstudianteBO4Mensaje{
     }
 
     static validateID(data){
+        var regEx = /^[0-9a-zA-Z]+$/;
         var aprobado = (v.isLength(data,1,20) && v.value.match(regEx))
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
