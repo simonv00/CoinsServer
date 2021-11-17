@@ -46,7 +46,7 @@ module.exports = class EstudianteBO3Placa{
     }
 
     static validateID(data){
-        var aprobado = (v.isLength(data,1,20) && v.value.match(regEx))
+        var aprobado = (v.isLength(data,1,20))
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
