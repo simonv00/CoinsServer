@@ -1,7 +1,6 @@
 const v = require('validator')
 const checkStudent = require('./EstudianteDAOCheck.js')
 const insertStudent = require('./EstudianteDAO.js')
-var isAlphanumeric = require('is-alphanumeric');
 
 var ItSaved = false
 module.exports = class EstudianteBO{
@@ -99,7 +98,8 @@ module.exports = class EstudianteBO{
     }
 
     static validateID(data){
-        var aprobado = (v.isLength(data,1,20) && isAlphanumeric(v))
+        var regEx = /^[0-9a-zA-Z]+$/;
+        var aprobado = (v.isLength(data,1,20) && v.match(regEx))
         if(!aprobado) console.log(' fallando aqui con '+ data)
         return aprobado
     }
