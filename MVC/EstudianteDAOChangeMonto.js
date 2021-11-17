@@ -8,10 +8,10 @@ const db = mySql.createPool({
   user: "root",
   password: "pinguino",
   database: "Coins",*/
-  database: 'sql10448835',
-  user: 'sql10448835',
+  database: 'sql10451850',
+  user: 'sql10451850',
   host: 'sql10.freemysqlhosting.net',
-  password: 'ssU2dhtbJz',
+  password: '9BzdD1sSkt',
 });
 
 module.exports = async function changeMonto(montoObj, AllGood, callback) {
